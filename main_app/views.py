@@ -4,8 +4,8 @@ from rest_framework import generics, status, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from .models import Student
-from .serializers import StudentSerializer, UserSerializer
+from .models import Student, Course
+from .serializers import StudentSerializer, UserSerializer, CourseSerializer
 
 class CreateStudentView(generics.CreateAPIView):
   queryset = Student.objects.all()
@@ -51,3 +51,8 @@ class LoginView(APIView):
         'student': student_data  
       })
     return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+  
+class CourseListView(generics.ListAPIView):
+    queryset = Course.objects.all()
+    permission_classes = [permissions.AllowAny]
+    serializer_class = CourseSerializer

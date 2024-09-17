@@ -3,6 +3,35 @@ from django.contrib.auth.models import User
 import uuid as id_generator
 import datetime
 
+
+departments = (
+    ("CS", "Computer Science"),
+    ("BI", "Biology"),
+    ("CH", "Chemistry"),
+    ("EN", "English"),
+    ("MA", "Mathematics"),
+    ("PH", "Physics"),
+    ("EC", "Economics"),
+    ("PS", "Political Science"),
+    ("HI", "History"),
+    ("ED", "Education")
+)
+
+instructors = (
+    ("Sarah Johnson", "Dr. Sarah Johnson"),
+    ("Michael Lee", "Prof. Michael Lee"),
+    ("Emily Davis", "Dr. Emily Davis"),
+    ("Robert Brown", "Prof. Robert Brown"),
+    ("Jessica Martinez", "Dr. Jessica Martinez"),
+    ("William Smith", "Prof. William Smith"),
+    ("Jennifer Wilson", "Dr. Jennifer Wilson"),
+    ("David Anderson", "Prof. David Anderson"),
+    ("Angela Thomas", "Dr. Angela Thomas"),
+    ("Christopher Harris", "Prof. Christopher Harris")
+)
+
+
+
 class Student(models.Model):
     student_id = models.CharField(max_length=10, primary_key=True, unique=True, blank=True)
     name = models.CharField(max_length=100)
@@ -22,3 +51,13 @@ class Student(models.Model):
     
     def __str__(self):
         return f'{self.name} has student id: {self.student_id}'
+    
+
+class Course(models.Model):
+    name = models.CharField(max_length=150)
+    department = models.CharField(max_length=2, choices=departments, default=departments[0][0])
+    instructor = models.CharField(max_length=100, choices=instructors, default=instructors[0][0]) 
+    description = models.TextField(max_length=500)    
+
+    def __str__(self):
+        return f'{self.department}: {self.name}'
