@@ -1,5 +1,5 @@
-CREATE DATABASE studentcollector;
+CREATE DATABASE coursecollector;
 
-CREATE USER student_admin WITH PASSWORD 'password';
+CREATE USER course_admin WITH PASSWORD 'password';
 
-GRANT ALL PRIVILEGES ON DATABASE studentcollector TO student_admin;
+GRANT ALL PRIVILEGES ON DATABASE coursecollector TO course_admin;
