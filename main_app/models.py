@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 import uuid as id_generator
 import datetime
 
-
 departments = (
     ("CS", "Computer Science"),
     ("BI", "Biology"),
@@ -30,8 +29,6 @@ instructors = (
     ("Christopher Harris", "Prof. Christopher Harris")
 )
 
-
-
 class Student(models.Model):
     student_id = models.CharField(max_length=10, primary_key=True, unique=True, blank=True)
     name = models.CharField(max_length=100)
@@ -52,7 +49,6 @@ class Student(models.Model):
     def __str__(self):
         return f'{self.name} has student id: {self.student_id}'
     
-
 class Course(models.Model):
     name = models.CharField(max_length=150)
     department = models.CharField(max_length=2, choices=departments, default=departments[0][0])
@@ -61,3 +57,10 @@ class Course(models.Model):
 
     def __str__(self):
         return f'{self.department}: {self.name}'
+
+class Enrollment(models.Model):
+    course = models.ForeignKey(Course, null=True, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, null=True, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f'{self.student.name} is enrolled in {self.course.name}.'
