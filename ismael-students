@@ -1,0 +1,12 @@
+{
+    "username": "Rodney123",
+    "password": "123Rodney",
+    "name": "Shakes"
+}
+
+"student": {
+        "name": "Shakes",
+        "username": "Rodney123",
+        "student_id": "2024317329",
+        "enrollment_year": 2024
+    }
