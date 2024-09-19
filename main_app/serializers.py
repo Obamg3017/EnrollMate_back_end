@@ -31,11 +31,19 @@ class StudentSerializer(serializers.ModelSerializer):
         return student
 
 class CourseSerializer(serializers.ModelSerializer):
-
+    department_display = serializers.SerializerMethodField()
+    instructor_display = serializers.SerializerMethodField()
+    
     class Meta: 
         model = Course
-        fields = "__all__"
-        read_only_fields = "name", "department", "instructor", "description"
+        fields = ["name", "department", "department_display", "instructor", "instructor_display", "description"]
+        read_only_fields = "name", "department", "department_display", "instructor", "instructor_display", "description"
+        
+    def get_department_display(self, obj):
+        return obj.get_department_display()
+    
+    def get_instructor_display(self, obj):
+        return obj.get_instructor_display()
 
 class EnrollmentSerializer(serializers.ModelSerializer):
     course = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
