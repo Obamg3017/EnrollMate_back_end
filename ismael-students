@@ -11,3 +11,26 @@
         "enrollment_year": 2024
     }
 
+-- Seeding the Students table
+INSERT INTO main_app_student (student_id, name, enrollment_year, user_id) VALUES
+('2023000123', 'Alice Johnson', 2023, 1),
+('2022000456', 'Bob Smith', 2022, 2),
+('2021000789', 'Charlie Brown', 2021, 3),
+('2024000234', 'Dana White', 2024, 4),
+('2023000456', 'Eli Carter', 2023, 5);
+
+-- Seeding the Courses table
+INSERT INTO main_app_course (name, department, instructor, description) VALUES
+('Computer Science 101', 'CS', 'Dr. Alan Turing', 'Introduction to the fundamentals of computer science.'),
+('Mathematics 101', 'MA', 'Prof. Emmy Noether', 'Basic principles of algebra and calculus.'),
+('Physics 101', 'PH', 'Dr. Albert Einstein', 'Introduction to classical and modern physics.'),
+('Chemistry 101', 'CH', 'Dr. Marie Curie', 'Fundamentals of chemical reactions and molecular structure.'),
+('History 101', 'HI', 'Prof. Howard Zinn', 'Overview of modern world history.');
+
+-- Seeding the Enrollments table
+INSERT INTO main_app_enrollment (student_id, course_id) VALUES
+('2023000123', 1),  -- Alice Johnson enrolled in Computer Science 101
+('2022000456', 2),  -- Bob Smith enrolled in Mathematics 101
+('2021000789', 3),  -- Charlie Brown enrolled in Physics 101
+('2024000234', 4),  -- Dana White enrolled in Chemistry 101
+('2023000456', 5);  -- Eli Carter enrolled in History 101
