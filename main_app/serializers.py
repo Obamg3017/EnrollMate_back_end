@@ -37,7 +37,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta: 
         model = Course
         fields = ["id", "name", "department", "department_display", "instructor", "instructor_display", "description"]
-        read_only_fields = "id", "name", "department", "department_display", "instructor", "instructor_display", "description"
+        read_only_fields = ("id", "name", "department", "department_display", "instructor", "instructor_display", "description")
         
     def get_department_display(self, obj):
         return obj.get_department_display()
