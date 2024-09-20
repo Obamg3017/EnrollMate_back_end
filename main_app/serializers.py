@@ -36,8 +36,8 @@ class CourseSerializer(serializers.ModelSerializer):
     
     class Meta: 
         model = Course
-        fields = ["name", "department", "department_display", "instructor", "instructor_display", "description"]
-        read_only_fields = "name", "department", "department_display", "instructor", "instructor_display", "description"
+        fields = ["id", "name", "department", "department_display", "instructor", "instructor_display", "description"]
+        read_only_fields = "id", "name", "department", "department_display", "instructor", "instructor_display", "description"
         
     def get_department_display(self, obj):
         return obj.get_department_display()
@@ -46,8 +46,14 @@ class CourseSerializer(serializers.ModelSerializer):
         return obj.get_instructor_display()
 
 class EnrollmentSerializer(serializers.ModelSerializer):
-    course = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
+    course = CourseSerializer(read_only=True)
+    course_id = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), write_only=True)
     
     class Meta:
         model = Enrollment
-        fields = ['student', 'course']
+        fields = ['student', 'course', 'course_id']
+
+    def create(self, validated_data):
+        course = validated_data['course_id']
+        enrollment = Enrollment.objects.create(course=course, **validated_data)
+        return enrollment

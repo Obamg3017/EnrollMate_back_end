@@ -62,13 +62,11 @@ class EnrollmentList(generics.ListCreateAPIView):
   serializer_class = EnrollmentSerializer
   
   def get_queryset(self):
-    student_data = self.request.user.student
-    student = Student.objects.get(student_id=student_data.student_id)
+    student = self.request.user.student
     return Enrollment.objects.filter(student=student)
   
   def perform_create(self, serializer):
-    student_data = self.request.user.student
-    student = Student.objects.get(student_id=student_data.student_id)
+    student = self.request.user.student
     serializer.save(student=student)
 
 class EnrollmentDetail(generics.RetrieveUpdateDestroyAPIView):
