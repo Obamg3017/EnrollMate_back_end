@@ -51,7 +51,7 @@ SECRET_KEY=env('SECRET_KEY')
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://enroll-mate-front-end.vercel.app/",  
+    "https://enroll-mate-front-end.vercel.app",  
 ]
 
 # Application definition
