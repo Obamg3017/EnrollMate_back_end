@@ -51,7 +51,7 @@ class EnrollmentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Enrollment
-        fields = ['student', 'course', 'course_id']
+        fields = ["id", 'student', 'course', 'course_id']
 
     def create(self, validated_data):
         course = validated_data['course_id']
