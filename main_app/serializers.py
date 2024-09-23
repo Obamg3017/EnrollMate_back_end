@@ -54,6 +54,6 @@ class EnrollmentSerializer(serializers.ModelSerializer):
         fields = ["id", 'student', 'course', 'course_id']
 
     def create(self, validated_data):
-        course = validated_data['course_id']
+        course = validated_data.pop('course_id')
         enrollment = Enrollment.objects.create(course=course, **validated_data)
         return enrollment
