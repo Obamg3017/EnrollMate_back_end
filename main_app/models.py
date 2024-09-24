@@ -48,13 +48,16 @@ class Student(models.Model):
     
     def __str__(self):
         return f'{self.name} has student id: {self.student_id}'
-    
+
 class Course(models.Model):
     name = models.CharField(max_length=150)
     department = models.CharField(max_length=2, choices=departments, default=departments[0][0])
     instructor = models.CharField(max_length=100, choices=instructors, default=instructors[0][0]) 
-    description = models.TextField(max_length=500)    
-
+    description = models.TextField(max_length=500)
+    days = models.CharField(max_length=50, null=True)
+    start = models.DateTimeField(null=True)
+    end = models.DateTimeField(null=True)
+    
     def __str__(self):
         return f'{self.department}: {self.name}'
 
